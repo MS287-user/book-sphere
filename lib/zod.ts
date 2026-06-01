@@ -25,6 +25,7 @@ export const UploadSchema = z.object({
     ),
   coverImage: z
     .instanceof(File)
+    .nullable()
     .optional()
     .refine(
       (file) => !file || file.size <= MAX_IMAGE_SIZE,

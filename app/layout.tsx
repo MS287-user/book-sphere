@@ -30,16 +30,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider ui={ui}>
-      <html
-        lang="en"
-        className={`h-full antialiased ${ibmPlexSerif.variable} ${monaSans.variable} font-sans`}
-      >
-        <body className="min-h-full flex flex-col relative">
+    <html
+      lang="en"
+      className={`h-full antialiased ${ibmPlexSerif.variable} ${monaSans.variable} font-sans`}
+    >
+      <body className="min-h-full flex flex-col relative">
+        <ClerkProvider ui={ui}>
           <Navbar />
           {children}
-        </body>
-      </html>
-    </ClerkProvider>
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }

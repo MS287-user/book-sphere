@@ -76,6 +76,7 @@ const FileUploader = <T extends FieldValues>({
               type="button"
               onClick={onRemove}
               className="upload-dropzone-remove mt-2"
+              disabled={disabled}
             >
               <X className="w-5 h-5" />
             </button>

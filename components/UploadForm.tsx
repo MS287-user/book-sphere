@@ -16,11 +16,11 @@ import LoadingOverlay from "./LoadingOverlay";
 
 const UploadForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  // const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  // useEffect(() => {
+  //   setIsMounted(true);
+  // }, []);
 
   const form = useForm<BookUploadFormValues>({
     resolver: zodResolver(UploadSchema),
@@ -40,7 +40,7 @@ const UploadForm = () => {
     setIsSubmitting(false);
   };
 
-  if (!isMounted) return null;
+  // if (!isMounted) return null;
 
   return (
     <>
