@@ -124,7 +124,7 @@ const UploadForm = () => {
       if (book.alreadyExists) {
         toast.info("Book with same title already exists.");
         form.reset();
-        router.push(`/books/${existsBook.book.slug}`);
+        router.push(`/books/${book.data.slug}`);
         return;
       }
 
