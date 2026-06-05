@@ -6,9 +6,8 @@ import { NextResponse } from "next/server";
 const BLOB_READ_WRITE_TOKEN = process.env.BLOB_READ_WRITE_TOKEN;
 
 export async function POST(request: Request): Promise<NextResponse> {
-  const body = (await request.json()) as HandleUploadBody;
-
   try {
+    const body = (await request.json()) as HandleUploadBody;
     const jsonResponse = await handleUpload({
       token: BLOB_READ_WRITE_TOKEN,
       body,
