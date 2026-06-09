@@ -304,9 +304,16 @@ const useVapi = (book: IBook) => {
         },
       });
     } catch (error) {
-      console.error("Error starting call:", error);
+      console.error("Failed to start call:", error);
+      if (sessionIdRef.current) {
+        endVoiceSession(sessionIdRef.current, durationRef.current).catch(
+          (err) =>
+            console.error("Failed to end voice session on unmount:", err),
+        );
+        sessionIdRef.current = null;
+      }
       setStatus("idle");
-      setLimitError("An error occurred while starting the call");
+      setLimitError("Failed to start voice session. Please try again.");
     }
   }, [book._id, book.title, book.author, voice, userId]);
 
