@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Show, SignInButton, UserButton, useUser } from "@clerk/nextjs";
-import { CreditCard, SubscriptIcon } from "lucide-react";
 
 const navItems = [
   {
@@ -15,12 +14,12 @@ const navItems = [
     label: "Add New",
     href: "/books/new",
   },
+  { label: "Pricing", href: "/subscriptions" },
 ];
 
 const Navbar = () => {
   const pathName = usePathname();
 
-  const { user } = useUser();
   return (
     <>
       <header className="w-full fixed z-50 bg-(--bg-primary)">
@@ -63,15 +62,7 @@ const Navbar = () => {
 
               <Show when="signed-in">
                 <div className="nav-user-link">
-                  <UserButton>
-                    <UserButton.MenuItems>
-                      <UserButton.Link
-                        label="Subscriptions"
-                        href="/subscriptions"
-                        labelIcon={<CreditCard width={16} height={16} />}
-                      />
-                    </UserButton.MenuItems>
-                  </UserButton>
+                  <UserButton />
                   {/* {user?.firstName && (
                     <Link href={"/subscriptions"} className="nav-user-name">
                       {user.firstName}

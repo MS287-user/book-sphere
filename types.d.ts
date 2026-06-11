@@ -4,6 +4,7 @@ import { Control, FieldPath, FieldValues } from "react-hook-form";
 import { LucideIcon } from "lucide-react";
 import z from "zod";
 import { UploadSchema } from "@/lib/zod";
+import { PLANS, PlanType } from "./lib/subscriptions-constants";
 
 // ============================================
 // DATABASE MODELS
@@ -115,6 +116,15 @@ export interface FileUploadFieldProps<T extends FieldValues> {
   icon: LucideIcon;
   placeholder: string;
   hint: string;
+}
+
+export interface SessionCheckResult {
+  allowed: boolean;
+  currentCount: number;
+  limit: number;
+  plan: PlanType;
+  maxDurationMinutes: number;
+  error?: string;
 }
 
 export interface StartSessionResult {
