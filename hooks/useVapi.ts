@@ -74,16 +74,14 @@ const useVapi = (book: IBook) => {
     status === "speaking" ||
     status === "starting";
 
-  //* Limits:
-  // const maxDurationRef = useLatestRef(limits.maxSessionMinutes * 60)
-  // const maxDurationSeconds
-  // const remainingSeconds
-  // const showTimeWarning
-
   // Keep refs in sync with latest values for use in callbacks
-  const maxDurationSeconds = limits?.maxDurationPerSession
+  const defaultMaxDurationSeconds = limits?.maxDurationPerSession
     ? limits.maxDurationPerSession * 60
     : 15 * 60;
+  const [maxDurationSeconds, setMaxDurationSeconds] = useState(
+    defaultMaxDurationSeconds,
+  );
+
   const maxDurationRef = useLatestRef(maxDurationSeconds);
   const durationRef = useLatestRef(duration);
   const voice = book.persona || DEFAULT_VOICE;
@@ -300,6 +298,9 @@ const useVapi = (book: IBook) => {
       sessionIdRef.current = result.sessionId || null;
       // Note: Server-returned maxDurationMinutes is informational only
       // The actual limit is enforced by useLatestRef(limits.maxSessionMinutes * 60)
+      if (result.maxDurationMinutes) {
+        setMaxDurationSeconds(result.maxDurationMinutes * 60);
+      }
 
       const firstMessage = `Hey, good to meet you. Quick question before we dive in - have you actually read ${book.title} yet, or are we starting fresh?`;
 
