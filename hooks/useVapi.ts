@@ -86,6 +86,11 @@ const useVapi = (book: IBook) => {
   const durationRef = useLatestRef(duration);
   const voice = book.persona || DEFAULT_VOICE;
 
+  // Sync maxDurationSeconds with defaultMaxDurationSeconds when limits change
+  useEffect(() => {
+    setMaxDurationSeconds(defaultMaxDurationSeconds);
+  }, [defaultMaxDurationSeconds]);
+
   // Set up Vapi event listeners
   useEffect(() => {
     const handlers = {

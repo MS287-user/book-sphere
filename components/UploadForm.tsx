@@ -28,11 +28,6 @@ const UploadForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { userId } = useAuth();
   const router = useRouter();
-  // const [isMounted, setIsMounted] = useState(false);
-
-  // useEffect(() => {
-  //   setIsMounted(true);
-  // }, []);
 
   const form = useForm<BookUploadFormValues>({
     resolver: zodResolver(UploadSchema),
@@ -156,8 +151,6 @@ const UploadForm = () => {
     }
   };
 
-  // if (!isMounted) return null;
-
   return (
     <>
       {isSubmitting && <LoadingOverlay />}
@@ -173,7 +166,7 @@ const UploadForm = () => {
             acceptTypes={ACCEPTED_PDF_TYPES}
             icon={Upload}
             placeholder="Click to upload PDF"
-            hint="PDF file (max 50MB)"
+            hint="PDF file (max 100MB)"
             disabled={isSubmitting}
           />
 

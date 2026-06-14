@@ -23,6 +23,18 @@ export const metadata: Metadata = {
   title: "Book Sphere",
   description:
     "Transform you books into interactive AI conversations. Upload PDFs, and chat with your books using voice.",
+  icons: {
+    icon: [
+      {
+        url: "/favicon-dark.svg",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/favicon-light.svg",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

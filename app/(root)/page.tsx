@@ -12,6 +12,9 @@ const Page = async ({
 
   const bookResults = await getAllBooks(query);
   const books = bookResults.success ? (bookResults.data ?? []) : [];
+
+  const isEmpty = books.length === 0 || !books;
+
   return (
     <>
       <main className="wrapper container">
@@ -24,17 +27,25 @@ const Page = async ({
           <Search />
         </div>
 
-        <div className="library-books-grid">
-          {books.map((book) => (
-            <BookCard
-              key={book._id}
-              title={book.title}
-              author={book.author}
-              coverURL={book.coverURL}
-              slug={book.slug}
-            />
-          ))}
-        </div>
+        {isEmpty ? (
+          <div className="h-full flex justify-center items-center">
+            <h2 className="transcript-empty-text">
+              <b>No books found under the name "{query}"</b>
+            </h2>
+          </div>
+        ) : (
+          <div className="library-books-grid">
+            {books.map((book) => (
+              <BookCard
+                key={book._id}
+                title={book.title}
+                author={book.author}
+                coverURL={book.coverURL}
+                slug={book.slug}
+              />
+            ))}
+          </div>
+        )}
       </main>
     </>
   );

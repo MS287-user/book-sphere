@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Show, SignInButton, UserButton, useUser } from "@clerk/nextjs";
+import { Show, SignInButton, UserButton } from "@clerk/nextjs";
 
 const navItems = [
   {
@@ -41,6 +41,7 @@ const Navbar = () => {
                   key={label}
                   className={cn(
                     "nav-link-base",
+
                     isActive
                       ? "nav-link-active"
                       : "text-black hover:opacity-70",
@@ -53,8 +54,15 @@ const Navbar = () => {
 
             <div className="flex gap-7.5 items-center">
               <Show when="signed-out">
-                <SignInButton mode="modal">
-                  <button className="nav-link-base cursor-pointer text-black hover:opacity-70">
+                <SignInButton mode="redirect">
+                  <button
+                    className={cn(
+                      " cursor-pointer text-black hover:opacity-70",
+                      pathName === "/sign-in"
+                        ? "nav-link-active"
+                        : "nav-link-base",
+                    )}
+                  >
                     Sign In
                   </button>
                 </SignInButton>
